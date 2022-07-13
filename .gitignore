@@ -116,4 +116,7 @@ fabric.properties
 !.idea/codeStyles
 !.idea/runConfigurations
 
+# github codespaces
+oryxBuildBinary
+
 # End of https://www.toptal.com/developers/gitignore/api/go,goland+all
