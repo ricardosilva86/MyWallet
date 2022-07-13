@@ -16,6 +16,7 @@ func RunAPI(address string) error {
 func RunAPIWithHandler(address string, h HandlerInterface) error {
 	r := gin.Default()
 	r.GET("/", h.GetOK)
+	r.GET("/fixedcosts", h.GetFixedCosts)
 
 	return r.Run()
 }

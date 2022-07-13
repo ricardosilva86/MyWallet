@@ -2,24 +2,22 @@ package cmd
 
 import (
 	"fmt"
-	"os"
 	"github.com/spf13/cobra"
-	"MyWallet/api/dblayer"
-	"MyWallet/api/models"
+	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "migrate",
-	Short: "Migrate will sync your schema with the database",
+	Use:   "mywallet",
+	Short: "MyWallet API server",
 	Run: func(cmd *cobra.Command, args []string) {
-	  // Do Stuff Here
-	  dblayer.DBORM.AutoMigrate(models.FixedCost{})
+		// Do Stuff Here
+		fmt.Println("You need to specify if you want to run the server or migrations")
 	},
-  }
-  
-  func Execute() {
+}
+
+func Execute() {
 	if err := rootCmd.Execute(); err != nil {
-	  fmt.Fprintln(os.Stderr, err)
-	  os.Exit(1)
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
 	}
-  }
+}

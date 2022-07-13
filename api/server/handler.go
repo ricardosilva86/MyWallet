@@ -3,6 +3,7 @@ package server
 import (
 	"MyWallet/api/dblayer"
 	"github.com/gin-gonic/gin"
+	"log"
 	"net/http"
 )
 
@@ -39,4 +40,10 @@ func (h *Handler) GetFixedCosts(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "database server error"})
 		return
 	}
+	fc, err := h.db.GetAllFixedCosts()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "error retrieving fixed costs"})
+		log.Println(err)
+	}
+	c.JSON(http.StatusOK, fc)
 }
