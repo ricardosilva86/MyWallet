@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"MyWallet/api/migrations"
 	"github.com/spf13/cobra"
 	"log"
 )
@@ -10,9 +11,16 @@ func init() {
 }
 
 var migrateCmd = &cobra.Command{
-	Use:   "migrate",
-	Short: "Migrate will sync your schema with the database",
+	Use:   "migrations",
+	Short: "Migrations will sync your schema with the database",
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Println("Running migrations")
+		log.Println("Initializing DB")
+		migrations.InitDB()
+		log.Println("Performing Database Migration...")
+		if ok := migrations.Migrate(); ok != nil {
+			log.Printf("error while performing migrations: %s\n", ok)
+		} else {
+			log.Println("Migrations finished with success")
+		}
 	},
 }

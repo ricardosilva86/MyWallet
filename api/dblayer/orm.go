@@ -13,7 +13,7 @@ type DBORM struct {
 }
 
 func NewORM(dbname, con string) (*DBORM, error) {
-	dsn := "host=localhost user=gorm password=gorm dbname=mywallet port=5432 sslmode=disable TimeZone=Europe/Amsterdam"
+	dsn := "host=localhost user=gorm password=gorm dbname=postgres port=5432 sslmode=disable TimeZone=Europe/Amsterdam"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	//mysql connection bellow:
 	//db, err := gorm.Open(dbname, con+"?parseTime=true")
