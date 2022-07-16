@@ -32,3 +32,7 @@ func NewORM(dbname, con string) (*DBORM, error) {
 func (db *DBORM) GetAllFixedCosts() (fc []models.FixedCost, err error) {
 	return fc, db.Find(&fc).Error
 }
+
+func (db *DBORM) GetAllVariableSpend() (vs []models.VariableSpend, err error) {
+	return vs, db.Find(&vs).Error
+}

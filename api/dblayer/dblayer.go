@@ -7,6 +7,7 @@ import (
 
 type DBLayer interface {
 	GetAllFixedCosts() ([]models.FixedCost, error)
+	GetAllVariableSpend() ([]models.VariableSpend, error)
 }
 
 var ErrINVALIDPASSWORD = errors.New("Invalid password")

@@ -14,3 +14,13 @@ type FixedCost struct {
 	PaymentType string         `json:"paymentType" gorm:"column:payment_type"`
 	Account     string         `json:"account" gorm:"column:account"`
 }
+
+type VariableSpend struct {
+	gorm.Model
+	Name        string         `json:"name" gorm:"column:name"`
+	Type        string         `json:"type" gorm:"column:type"`
+	Date        datatypes.Date `json:"date" gorm:"column:date"`
+	Amount      float64        `json:"amount" gorm:"column:amount"`
+	PaymentType string         `json:"paymentType" gorm:"column:payment_type"`
+	Account     string         `json:"account" gorm:"column:account"`
+}

@@ -10,6 +10,7 @@ import (
 type HandlerInterface interface {
 	GetOK(c *gin.Context)
 	GetFixedCosts(c *gin.Context)
+	GetVariableSpend(c *gin.Context)
 }
 
 type Handler struct {
@@ -46,4 +47,18 @@ func (h *Handler) GetFixedCosts(c *gin.Context) {
 		log.Println(err)
 	}
 	c.JSON(http.StatusOK, fc)
+}
+
+func (h *Handler) GetVariableSpend(c *gin.Context) {
+	if h.db == nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "database server error"})
+		return
+	}
+
+	vs, err := h.db.GetAllVariableSpend()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "error retrieving variable costs"})
+		log.Println(err)
+	}
+	c.JSON(http.StatusOK, vs)
 }
