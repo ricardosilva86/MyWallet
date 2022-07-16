@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"MyWallet/api/server"
+	"MyWallet/util"
+	"fmt"
 	"github.com/spf13/cobra"
 	"log"
 )
@@ -14,6 +16,10 @@ var serverCmd = &cobra.Command{
 	Use:   "server",
 	Short: "Run the API server",
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Fatal(server.RunAPI("127.0.0.1:8080"))
+		config, err := util.LoadServerConfig(".")
+		if err != nil {
+			log.Fatalf("error loading server config: %s", err)
+		}
+		log.Fatal(server.RunAPI(fmt.Sprintf("%s:%s", config.Host, config.Port)))
 	},
 }

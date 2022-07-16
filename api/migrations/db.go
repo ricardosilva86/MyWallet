@@ -1,6 +1,8 @@
 package migrations
 
 import (
+	"MyWallet/util"
+	"fmt"
 	"gorm.io/driver/postgres"
 	_ "gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -13,7 +15,9 @@ var (
 func InitDB() {
 	var err error
 
-	dsn := "host=localhost user=gorm password=gorm dbname=postgres port=5432 sslmode=disable TimeZone=Europe/Amsterdam"
+	config, err := util.LoadDBConfig(".")
+
+	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%d sslmode=%s TimeZone=%s", config.Host, config.User, config.Password, config.DBname, config.Port, config.SSLmode, config.TimeZone)
 	DBCon, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	//where myhost is port is the port postgres is running on
 	//user is your postgres use name
