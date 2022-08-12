@@ -120,3 +120,9 @@ fabric.properties
 oryxBuildBinary
 
 # End of https://www.toptal.com/developers/gitignore/api/go,goland+all
+
+# Manually added files/folders
+
+# This file contains the same structure as app.local.yaml and app.yaml
+# but remote contains sensitive information about DB running on AWS
+app.remote.yaml
